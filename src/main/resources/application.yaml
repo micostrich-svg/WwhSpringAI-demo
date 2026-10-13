@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: demo
+  profiles:
+    default: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/itheima?serverTimezone=Asia/Shanghai&useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&tinyInt1isBit=false&allowPublicKeyRetrieval=true&allowMultiQueries=true&useServerPrepStmts=false
+    username: micostrich
+    password: Wwh06317
+  ai:
+    openai:
+      base-url: https://ws-wkmwey9ronsa9de3.cn-beijing.maas.aliyuncs.com/compatible-mode/v1
+      api-key: ${OPENAI_API_KEY:}
+      chat:
+        options:
+          model: kimi-k3
+      embedding:
+        options:
+          model: text-embedding-v4
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 30MB
+
+# 必须留在根级：嵌在 spring.ai 下面的日志级别会被忽略
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor: debug
+    com.example: debug
